@@ -8,14 +8,10 @@ export default class extends Phaser.Sprite {
     this.anchor.setTo(0.5)
 
     this.inputEnabled = true
-    this.events.onInputDown.add(this.start, this)
+    this.events.onInputDown.add(this.end, this)
   }
 
-  update () {
-    this.angle += 1
-  }
-
-  start () {
-    this.game.state.start("Game")
+  end () {
+    this.game.state.start("Intro")
   }
 }
