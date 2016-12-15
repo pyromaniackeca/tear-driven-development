@@ -6,6 +6,8 @@ import BootState from "./states/Boot"
 import SplashState from "./states/Splash"
 import IntroState from "./states/Intro"
 import GameState from "./states/Game"
+import VictoryState from "./states/Victory"
+import DefeatState from "./states/Defeat"
 
 class Game extends Phaser.Game {
   constructor () {
@@ -18,9 +20,15 @@ class Game extends Phaser.Game {
     this.state.add("Splash", SplashState, false)
     this.state.add("Intro", IntroState, false)
     this.state.add("Game", GameState, false)
+    this.state.add("Victory", VictoryState, false)
+    this.state.add("Defeat", DefeatState, false)
 
     this.state.start("Boot")
   }
 }
 
 window.game = new Game()
+window.game.question = null
+window.game.tears = 50
+window.game.chaos = 50
+window.game.questionCounter = 0

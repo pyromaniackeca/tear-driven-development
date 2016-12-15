@@ -1,52 +1,65 @@
-/* globals __DEV__ */
 import Phaser from "phaser"
-import Mushroom from "../sprites/Mushroom"
+import StaticSprite from "../sprites/StaticSprite"
+import Button from "../sprites/Button"
 import {setResponsiveWidth} from "../utils"
+import {addCharByChar} from "../utils"
 
 export default class extends Phaser.State {
   init () {}
   preload () {}
 
   create () {
-    let banner = this.add.text(this.game.world.centerX, this.game.height - 30, "Follow TDD!")
-    banner.font = "Nunito"
-    banner.fontSize = 60
-    banner.fill = "#77BFA3"
-    banner.anchor.setTo(0.5)
-    banner.textTimer = 0
-    banner.changeCount = 0
+    let introString = "Congratulations! You’ve been chosen to lead a team\nthat’s cleaning up a project left behind by a\ndeveloper that’s rumoured to have gone insane. The\ncode is lengthy, complex, unreadable and critically\nridden with bugs…\n\nThe deadline is tight, but you hope you can make it\nwithout spilling too many tears. Let’s see how\nyou’ll fare."
 
-    banner.update = function () {
-      if (this.textTimer < 30) {
-        this.textTimer += 1
-      } else {
-        this.textTimer = 0
-
-        if ((this.changeCount % 2) == 0) {
-          this.fill = "#77BFA3"
-        } else {
-          this.fill = "#E74C3C"
-        }
-
-        this.changeCount += 1
-      }
-    }
-
-    this.mushroom = new Mushroom({
+    this.background = new StaticSprite({
       game: this.game,
       x: this.game.world.centerX,
       y: this.game.world.centerY,
-      asset: 'mushroom'
+      asset: "background1"
     })
 
-    // set the sprite width to 30% of the game width
-    setResponsiveWidth(this.mushroom, 30, this.game.world)
-    this.game.add.existing(this.mushroom)
+    this.dialog = new StaticSprite({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: this.game.world.centerY,
+      asset: "dialog1"
+    })
+
+    this.button = new Button({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: this.game.height - 200,
+      asset: "button"
+    })
+    this.button.events.onInputDown.add(this.startGame, this.button)
+
+    setResponsiveWidth(this.background, 100, this.game.world)
+    this.game.add.existing(this.background)
+
+    setResponsiveWidth(this.dialog, 70, this.game.world)
+    this.game.add.existing(this.dialog)
+
+    setResponsiveWidth(this.button, 19, this.game.world)
+    this.game.add.existing(this.button)
+
+    let introText = this.add.text(this.game.world.centerX, 500, "")
+    introText.font = "PT Mono"
+    introText.fontSize = 15
+    introText.fill = "#FFFFFF"
+    introText.anchor.setTo(0.5)
+
+    addCharByChar(introText, introString, 0.05)
+
+    let startButtonText = this.add.text(this.game.world.centerX, this.game.height - 200, "Oh well, let's give it a go.")
+    startButtonText.font = "PT Mono"
+    startButtonText.fontSize = 18
+    startButtonText.fill = "#FFFFFF"
+    startButtonText.anchor.setTo(0.5)
   }
 
-  render () {
-    if (__DEV__) {
-      this.game.debug.spriteInfo(this.mushroom, 32, 32)
-    }
+  //custom
+
+  startGame () {
+    this.game.state.start("Game")
   }
 }

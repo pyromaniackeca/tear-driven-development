@@ -9,3 +9,15 @@ export const setResponsiveWidth = (sprite, percent, parent) => {
   sprite.width = parent.width / (100 / percent)
   sprite.height = sprite.texture.height - (sprite.texture.height * percentWidth / 100)
 }
+
+export const addCharByChar = (text, txt, time) => {
+  var i,
+  txtLen = txt.length,
+  totalTime = 0;
+  for (i = 0; i < txtLen; i++) {  // loop through each character of the custom text
+    game.time.events.add(Phaser.Timer.SECOND * totalTime, function() {
+        text.text += this.txt[this.i];  // add the next character
+    }, { text: text, txt: txt, i: i });  // for scoping purposes
+    totalTime += time;  // the next character will appear at this time
+  }
+}

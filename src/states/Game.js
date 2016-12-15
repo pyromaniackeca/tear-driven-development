@@ -1,66 +1,165 @@
-/* globals __DEV__ */
 import Phaser from "phaser"
-import Background from "../sprites/Background"
+import Button from "../sprites/Button"
+import StaticSprite from "../sprites/StaticSprite"
 import {setResponsiveWidth} from "../utils"
+import {addCharByChar} from "../utils"
+import {questions} from "../questions"
 
 export default class extends Phaser.State {
   init () {}
   preload () {}
 
   create () {
-    let banner = this.add.text(this.game.world.centerX, this.game.height - 30, "Follow TDD!")
-    banner.font = "Nunito"
-    banner.fontSize = 60
-    banner.fill = "#77BFA3"
-    banner.anchor.setTo(0.5)
-    banner.textTimer = 0
-    banner.changeCount = 0
+    this.unansweredQuestions = questions
+    this.answeredQuestions = []
 
-    banner.update = function () {
-      if (this.textTimer < 30) {
-        this.textTimer += 1
-      } else {
-        this.textTimer = 0
-
-        if ((this.changeCount % 2) == 0) {
-          this.fill = "#77BFA3"
-        } else {
-          this.fill = "#E74C3C"
-        }
-
-        this.changeCount += 1
-      }
-    }
-
-    let introText = this.add.text(this.game.world.centerX, this.game.height - 90, "")
-    introText.font = "Roboto"
-    introText.fontSize = 20
-    introText.fill = "#000000"
-    introText.anchor.setTo(0.5)
-
-    this.background = new Background({
+    this.background = new StaticSprite({
       game: this.game,
       x: this.game.world.centerX,
       y: this.game.world.centerY,
-      asset: "background"
+      asset: "background1"
     })
 
-    // set the sprite width to 30% of the game width
-    setResponsiveWidth(this.background, 50, this.game.world)
+    this.dialog = new StaticSprite({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: this.game.world.centerY,
+      asset: "dialog2"
+    })
+
+    this.char = new StaticSprite({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: 300,
+      asset: "char1"
+    })
+
+    this.button2 = new Button({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: this.game.height - 200,
+      asset: "button"
+    })
+    this.button2.events.onInputDown.add(this.answer2, this.button2)
+
+    this.button1 = new Button({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: this.game.height - 285,
+      asset: "button"
+    })
+    this.button1.events.onInputDown.add(this.answer1, this.button1)
+
+    setResponsiveWidth(this.background, 100, this.game.world)
     this.game.add.existing(this.background)
 
-    this.addCharByChar(introText, "The journey begins . . .", 0.1)
+    setResponsiveWidth(this.dialog, 70, this.game.world)
+    this.game.add.existing(this.dialog)
+
+    setResponsiveWidth(this.char, 15, this.game.world)
+    this.game.add.existing(this.char)
+
+    setResponsiveWidth(this.button2, 19, this.game.world)
+    this.game.add.existing(this.button2)
+
+    setResponsiveWidth(this.button1, 19, this.game.world)
+    this.game.add.existing(this.button1)
+
+    this.tearText = this.add.text(this.game.world.centerX + 220, 185, "Tears\n" + this.game.tears + "%")
+    this.tearText.font = "PT Mono"
+    this.tearText.fontSize = 13
+    this.tearText.fill = "#FFFFFF"
+    this.tearText.anchor.setTo(0.5)
+
+    this.chaosText = this.add.text(this.game.world.centerX - 220, 185, "Chaos\n" + this.game.chaos + "%")
+    this.chaosText.font = "PT Mono"
+    this.chaosText.fontSize = 13
+    this.chaosText.fill = "#FFFFFF"
+    this.chaosText.anchor.setTo(0.5)
+
+    this.questionText = this.add.text(this.game.world.centerX, 525, "")
+    this.questionText.font = "PT Mono"
+    this.questionText.fontSize = 15
+    this.questionText.fill = "#FFFFFF"
+    this.questionText.anchor.setTo(0.5)
+
+    this.answer1Text = this.add.text(this.game.world.centerX, this.game.height - 285, "")
+    this.answer1Text.font = "PT Mono"
+    this.answer1Text.fontSize = 13
+    this.answer1Text.fill = "#FFFFFF"
+    this.answer1Text.anchor.setTo(0.5)
+
+    this.answer2Text = this.add.text(this.game.world.centerX, this.game.height - 200, "")
+    this.answer2Text.font = "PT Mono"
+    this.answer2Text.fontSize = 13
+    this.answer2Text.fill = "#FFFFFF"
+    this.answer2Text.anchor.setTo(0.5)
+
+    this.chooseQuestion()
   }
 
-  addCharByChar(text, txt, time) {
-    var i,
-    txtLen = txt.length,
-    totalTime = 0;
-    for (i = 0; i < txtLen; i++) {  // loop through each character of the custom text
-      game.time.events.add(Phaser.Timer.SECOND * totalTime, function() {
-          text.text += this.txt[this.i];  // add the next character
-      }, { text: text, txt: txt, i: i });  // for scoping purposes
-      totalTime += time;  // the next character will appear at this time
+  //custom
+
+  chooseQuestion () {
+    this.game.question = this.unansweredQuestions[0]
+
+    this.tearText.text = "Tears\n" + this.game.tears + "%"
+    this.chaosText.text = "Chaos\n" + this.game.chaos + "%"
+
+    this.answer1Text.text = this.game.question.answer1.text
+    this.answer2Text.text = this.game.question.answer2.text
+
+    this.questionText.text = ""
+    addCharByChar(this.questionText, this.game.question.text, 0.05)
+  }
+
+  answer1 () {
+    this.game.tears += this.game.question.answer1.tears
+    if (this.game.tears < 0) {
+      this.game.tears = 0
     }
+    if (this.game.tears >= 100) {
+      this.game.state.start("Defeat")
+    }
+
+    this.game.chaos += this.game.question.answer1.chaos
+    if (this.game.chaos < 0) {
+      this.game.chaos = 0
+    }
+    if (this.game.chaos >= 100) {
+      this.game.state.start("Defeat")
+    }
+
+    if (this.game.questionCounter == 3) {
+      this.game.state.start("Victory")
+    }
+
+    this.game.questionCounter += 1
+    this.game.state.states.Game.chooseQuestion()
+  }
+
+  answer2 () {
+    this.game.tears += this.game.question.answer2.tears
+    if (this.game.tears < 0) {
+      this.game.tears = 0
+    }
+    if (this.game.tears >= 100) {
+      this.game.state.start("Defeat")
+    }
+
+    this.game.chaos += this.game.question.answer2.chaos
+    if (this.game.chaos < 0) {
+      this.game.chaos = 0
+    }
+    if (this.game.chaos >= 100) {
+      this.game.state.start("Defeat")
+    }
+
+    if (this.game.questionCounter == 3) {
+      this.game.state.start("Victory")
+    }
+
+    this.game.questionCounter += 1
+    this.game.state.states.Game.chooseQuestion()
   }
 }

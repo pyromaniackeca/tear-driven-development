@@ -7,15 +7,21 @@ export default class extends Phaser.Sprite {
     this.game = game
     this.anchor.setTo(0.5)
 
+    this.score = 0
+
     this.inputEnabled = true
-    this.events.onInputDown.add(this.start, this)
+    this.input.useHandCursor = true
+    this.events.onInputDown.add(this.end, this)
+
+    this.scoreText = this.game.add.text(100, 100, this.score)
+    this.scoreText.font = "Roboto"
+    this.scoreText.fontSize = 60
+    this.scoreText.fill = "#FFFFFF"
+    this.scoreText.anchor.setTo(0.5)
   }
 
-  update () {
-    this.angle += 1
-  }
-
-  start () {
-    this.game.state.start("Game")
+  end () {
+    this.score += 1
+    this.scoreText.text = this.score
   }
 }
