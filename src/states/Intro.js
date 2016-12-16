@@ -9,7 +9,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    let introString = "Congratulations! You’ve been chosen to lead a team\nthat’s cleaning up a project left behind by a\ndeveloper that’s rumoured to have gone insane. The\ncode is lengthy, complex, unreadable and critically\nridden with bugs…\n\nThe deadline is tight, but you hope you can make it\nwithout spilling too many tears. Let’s see how\nyou’ll fare."
+    let introString = "Congratulations! You’ve been chosen to lead a team\nthat’s cleaning up a project left behind by a\ndeveloper that’s rumoured to have gone insane. The\ncode is lengthy, complex, unreadable and critically\nridden with bugs…\n\nThe deadline is tight, but you hope you can manage\nthe chaos without spilling too many tears. Let’s\nsee how you’ll fare."
 
     this.background = new StaticSprite({
       game: this.game,
@@ -42,11 +42,10 @@ export default class extends Phaser.State {
     setResponsiveWidth(this.button, 19, this.game.world)
     this.game.add.existing(this.button)
 
-    let introText = this.add.text(this.game.world.centerX, 500, "")
+    let introText = this.add.text(this.game.world.centerX - 230, 400, "")
     introText.font = "PT Mono"
     introText.fontSize = 15
     introText.fill = "#FFFFFF"
-    introText.anchor.setTo(0.5)
 
     addCharByChar(introText, introString, 0.05)
 

@@ -9,7 +9,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    let victoryString = "Congratulations, you've made it! You've kept both your\nsanity and application from falling apart. The\njourney has been long and rough, but you've stayed\non the right path. TDD is strong with you."
+    let victoryString = "Congratulations, you've made it! You've kept both\nyour sanity and application from falling apart.\nThe journey has been long and rough, but you've\nstayed on the right path. TDD is strong with you."
 
     this.background = new StaticSprite({
       game: this.game,
@@ -42,11 +42,10 @@ export default class extends Phaser.State {
     setResponsiveWidth(this.button, 19, this.game.world)
     this.game.add.existing(this.button)
 
-    let victoryText = this.add.text(this.game.world.centerX, 550, "")
+    let victoryText = this.add.text(this.game.world.centerX - 223, 490, "")
     victoryText.font = "PT Mono"
     victoryText.fontSize = 15
     victoryText.fill = "#FFFFFF"
-    victoryText.anchor.setTo(0.5)
 
     addCharByChar(victoryText, victoryString, 0.05)
 

@@ -42,11 +42,10 @@ export default class extends Phaser.State {
     setResponsiveWidth(this.button, 19, this.game.world)
     this.game.add.existing(this.button)
 
-    let defeatText = this.add.text(this.game.world.centerX, 550, "")
+    let defeatText = this.add.text(this.game.world.centerX - 223, 490, "")
     defeatText.font = "PT Mono"
     defeatText.fontSize = 15
     defeatText.fill = "#FFFFFF"
-    defeatText.anchor.setTo(0.5)
 
     addCharByChar(defeatText, defeatString, 0.05)
 
