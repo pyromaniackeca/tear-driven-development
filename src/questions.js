@@ -130,13 +130,13 @@ export const questions = [
     character: "char1",
     answer1: {
       text: "Spend some time on recruiting a new\nsenior developer.",
-      chaos: -20,
+      chaos: 10,
       tears: 10
     },
     answer2: {
       text: "Hire two of your friends who know how\nto code and have no interest in alpacas.",
-      chaos: 20,
-      tears: -10
+      chaos: 30,
+      tears: 20
     }
   },
   {
