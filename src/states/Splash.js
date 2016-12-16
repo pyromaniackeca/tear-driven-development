@@ -16,7 +16,7 @@ export default class extends Phaser.State {
     this.load.image("background1", "assets/images/ekran1.png")
     this.load.image("background2", "assets/images/chaos.png")
     this.load.image("background3", "assets/images/success-screen.png")
-    this.load.image("dialog1", "assets/images/welcome1.png")
+    this.load.image("dialog1", "assets/images/frishko.png")
     this.load.image("dialog2", "assets/images/dialog.png")
     this.load.image("dialog3", "assets/images/success.png")
     this.load.image("dialog4", "assets/images/darn.png")

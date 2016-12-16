@@ -10,7 +10,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    this.questions = questions
+    this.questions = questions.slice()
 
     this.background = new StaticSprite({
       game: this.game,
