@@ -59,6 +59,7 @@ export default class extends Phaser.State {
   //custom
 
   startGame () {
+    this.game.sound.play("click", 0.3)
     this.game.state.start("Game")
   }
 }

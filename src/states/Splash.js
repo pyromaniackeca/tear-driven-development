@@ -24,6 +24,10 @@ export default class extends Phaser.State {
     this.load.image("char1", "assets/images/sisoje.png")
     this.load.image("char2", "assets/images/senior.png")
     this.load.image("char3", "assets/images/sad.png")
+    this.load.image("char4", "assets/images/blob.png")
+
+    this.load.audio("type", "assets/sounds/eklee-KeyPressOld03.wav")
+    this.load.audio("click", "assets/sounds/button2.wav")
   }
 
   create () {

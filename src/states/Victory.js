@@ -59,6 +59,7 @@ export default class extends Phaser.State {
   //custom
 
   tryAgain () {
+    this.game.sound.play("click", 0.3)
     this.game.state.start("Intro")
     this.game.question = null
     this.game.tears = 50

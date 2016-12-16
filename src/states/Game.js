@@ -137,6 +137,8 @@ export default class extends Phaser.State {
   }
 
   answer1 () {
+    this.game.sound.play("click", 0.3)
+
     this.game.tears += this.game.question.answer1.tears
     if (this.game.tears < 0) {
       this.game.tears = 0
@@ -153,7 +155,7 @@ export default class extends Phaser.State {
       this.game.state.start("Defeat")
     }
 
-    if (this.game.questionCounter == 4) {
+    if (this.game.questionCounter == 9) {
       this.game.state.start("Victory")
     }
 
@@ -162,6 +164,8 @@ export default class extends Phaser.State {
   }
 
   answer2 () {
+    this.game.sound.play("click", 0.3)
+
     this.game.tears += this.game.question.answer2.tears
     if (this.game.tears < 0) {
       this.game.tears = 0
@@ -178,7 +182,7 @@ export default class extends Phaser.State {
       this.game.state.start("Defeat")
     }
 
-    if (this.game.questionCounter == 4) {
+    if (this.game.questionCounter == 9) {
       this.game.state.start("Victory")
     }
 

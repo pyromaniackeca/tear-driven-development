@@ -99,7 +99,7 @@ export const questions = [
   },
   {
     text: "The client is requesting new features, and you\nhaven't even managed to develop the planned ones.",
-    character: "char3",
+    character: "char4",
     answer1: {
       text: "The client is always right.\nDo all the features!",
       chaos: 20,
@@ -113,7 +113,7 @@ export const questions = [
   },
   {
     text: "GitHub is down.",
-    character: "char2",
+    character: "char4",
     answer1: {
       text: "Admire the illustration on the 404 page,\nand then have a beer.",
       chaos: 10,
@@ -141,7 +141,7 @@ export const questions = [
   },
   {
     text: "Your tests are failing, but the\napplication seems to work just fine.",
-    character: "char3",
+    character: "char4",
     answer1: {
       text: "Get cracking at making the tests pass.",
       chaos: -20,
