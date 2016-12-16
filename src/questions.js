@@ -47,10 +47,10 @@ export const questions = [
     answer1: {
       text: "Ugh. Walk over to your colleague and\ntalk to them.",
       chaos: -10,
-      tears: 20
+      tears: 10
     },
     answer2: {
-      text: "Send a mean tweet to Slack. That might\nspeed them up.",
+      text: "Send a mean tweet to Slack. You know\nyou want to.",
       chaos: 10,
       tears: -20
     }
@@ -74,13 +74,13 @@ export const questions = [
     character: "char3",
     answer1: {
       text: "Sit him down, and help him through it.",
-      chaos: -10,
-      tears: 20
+      chaos: 10,
+      tears: -20
     },
     answer2: {
       text: "Tell him to man up.",
       chaos: 10,
-      tears: -10
+      tears: 10
     }
   },
   {
@@ -122,7 +122,7 @@ export const questions = [
     answer2: {
       text: "Work on your local branch.",
       chaos: -10,
-      tears: 10
+      tears: 0
     }
   },
   {
@@ -150,7 +150,63 @@ export const questions = [
     answer2: {
       text: "Look! It's snowing outside!",
       chaos: 20,
+      tears: -20
+    }
+  },
+  {
+    text: "One of your colleagues isn't checking\nif the tests are passing.",
+    character: "char4",
+    answer1: {
+      text: "Life's too short to waste time\nexplaining the basics to rookies.",
+      chaos: 10,
       tears: -10
+    },
+    answer2: {
+      text: "Time for some tough love.",
+      chaos: -20,
+      tears: 10
+    }
+  },
+  {
+    text: "There are 2 new junior developers.\nThey don't know how to write tests.",
+    character: "char4",
+    answer1: {
+      text: "Show them a few examples and explain the\nimportance of writing tests first.",
+      chaos: -10,
+      tears: -20
+    },
+    answer2: {
+      text: "Tell them to google TDD.",
+      chaos: 10,
+      tears: 10
+    }
+  },
+  {
+    text: "The customer wants you to make some major changes\nto the app.",
+    character: "char4",
+    answer1: {
+      text: "Pour some more coffee and TDD your way\nthrough the code.",
+      chaos: 10,
+      tears: 10
+    },
+    answer2: {
+      text: "Start googling 'How to start an alpaca\nfarm'.'",
+      chaos: 30,
+      tears: 30
+    }
+  },
+  {
+    text: "You're late for your mom's birthday. Also, the\nbranch you want to merge has some conflicts\nwith the master branch.",
+    character: "char4",
+    answer1: {
+      text: "Sometimes, all you need to do is\nforce push stuff around.",
+      chaos: 10,
+      tears: 10
+    },
+    answer2: {
+      text: "Resolve the issues first, you live at\nher place and see her every day anyway.",
+      chaos: 30,
+      tears: 30
     }
   }
 ]
