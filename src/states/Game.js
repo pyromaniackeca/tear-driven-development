@@ -61,20 +61,23 @@ export default class extends Phaser.State {
     setResponsiveWidth(this.button1, 19, this.game.world)
     this.game.add.existing(this.button1)
 
-    ///
-    this.tearGauge = game.add.graphics(this.game.world.centerX + 236, 440)
-    this.chaosGauge = game.add.graphics(this.game.world.centerX - 236, 440)
-    ///
+    this.chaosGauge = game.add.graphics(this.game.world.centerX - 180, 175)
+    this.tearGauge = game.add.graphics(this.game.world.centerX - 180, 205)
 
-    this.tearText = this.add.text(this.game.world.centerX + 204, 185, "Tears\n" + this.game.tears + "%")
+    this.frame = game.add.graphics(this.game.world.centerX - 180, 175)
+    this.frame.beginFill(0xF2F2B6, 1)
+    this.frame.drawRect(0, 0, 100, 16)
+    this.frame.drawRect(0, 30, 100, 16)
+
+    this.tearText = this.add.text(this.game.world.centerX - 210, 215, "Tears")
     this.tearText.font = "PT Mono"
-    this.tearText.fontSize = 13
+    this.tearText.fontSize = 15
     this.tearText.fill = "#FFFFFF"
     this.tearText.anchor.setTo(0.5)
 
-    this.chaosText = this.add.text(this.game.world.centerX - 204, 185, "Chaos\n" + this.game.chaos + "%")
+    this.chaosText = this.add.text(this.game.world.centerX - 210, 185, "Chaos")
     this.chaosText.font = "PT Mono"
-    this.chaosText.fontSize = 13
+    this.chaosText.fontSize = 15
     this.chaosText.fill = "#FFFFFF"
     this.chaosText.anchor.setTo(0.5)
 
@@ -105,9 +108,6 @@ export default class extends Phaser.State {
     let index = Math.floor(Math.random() * (this.questions.lenght - this.game.questionCounter))
     this.game.question = this.questions.splice(index, 1)[0]
 
-    this.tearText.text = "Tears\n" + this.game.tears + "%"
-    this.chaosText.text = "Chaos\n" + this.game.chaos + "%"
-
     this.answer1Text.text = this.game.question.answer1.text
     this.answer2Text.text = this.game.question.answer2.text
 
@@ -122,28 +122,18 @@ export default class extends Phaser.State {
       asset: this.game.question.character
     })
 
-    setResponsiveWidth(this.char, 13, this.game.world)
+    setResponsiveWidth(this.char, 11, this.game.world)
     this.game.add.existing(this.char)
 
     this.tearGauge.clear()
-    if (this.game.tears <= 30) {
-      this.tearGauge.beginFill(0x69CCBE, 1)
-    } else if (this.game.tears > 30 && this.game.tears <= 70) {
-      this.tearGauge.beginFill(0xE0ED7E, 1)
-    } else {
-      this.tearGauge.beginFill(0xCC766A, 1)
-    }
-    this.tearGauge.drawRect(0, 0, 10, (-2.7 *this.game.tears))
+    this.tearGauge.beginFill(0x69CCBE, 1)
+    this.tearGauge.drawRect(0, 0, this.game.tears, 16)
+    this.game.world.bringToTop(this.tearGauge)
 
     this.chaosGauge.clear()
-    if (this.game.chaos <= 30) {
-      this.chaosGauge.beginFill(0x69CCBE, 1)
-    } else if (this.game.chaos > 30 && this.game.tears <= 70) {
-      this.chaosGauge.beginFill(0xE0ED7E, 1)
-    } else {
-      this.chaosGauge.beginFill(0xCC766A, 1)
-    }
-    this.chaosGauge.drawRect(0, 0, 10, (-2.7 * this.game.chaos))
+    this.chaosGauge.beginFill(0xCC766A, 1)
+    this.chaosGauge.drawRect(0, 0, this.game.chaos, 16)
+    this.game.world.bringToTop(this.chaosGauge)
   }
 
   answer1 () {
