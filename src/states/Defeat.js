@@ -18,6 +18,13 @@ export default class extends Phaser.State {
       asset: "background2"
     })
 
+    this.logo = new StaticSprite({
+      game: this.game,
+      x: this.game.world.centerX + 840,
+      y: this.game.world.centerY + 410,
+      asset: "logo"
+    })
+
     this.dialog = new StaticSprite({
       game: this.game,
       x: this.game.world.centerX,
@@ -35,6 +42,9 @@ export default class extends Phaser.State {
 
     setResponsiveWidth(this.background, 100, this.game.world)
     this.game.add.existing(this.background)
+
+    setResponsiveWidth(this.logo, 10, this.game.world)
+    this.game.add.existing(this.logo)
 
     setResponsiveWidth(this.dialog, 70, this.game.world)
     this.game.add.existing(this.dialog)
