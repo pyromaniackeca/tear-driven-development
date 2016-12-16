@@ -55,9 +55,6 @@ export default class extends Phaser.State {
     setResponsiveWidth(this.dialog, 70, this.game.world)
     this.game.add.existing(this.dialog)
 
-    setResponsiveWidth(this.char, 15, this.game.world)
-    this.game.add.existing(this.char)
-
     setResponsiveWidth(this.button2, 19, this.game.world)
     this.game.add.existing(this.button2)
 
@@ -116,8 +113,19 @@ export default class extends Phaser.State {
 
     this.questionText.text = this.game.question.text //""
     // addCharByChar(this.questionText, this.game.question.text, 0.05)
-    this.tearGauge.clear()
 
+    this.char.kill()
+    this.char = new StaticSprite({
+      game: this.game,
+      x: this.game.world.centerX,
+      y: 300,
+      asset: this.game.question.character
+    })
+
+    setResponsiveWidth(this.char, 13, this.game.world)
+    this.game.add.existing(this.char)
+
+    this.tearGauge.clear()
     if (this.game.tears <= 30) {
       this.tearGauge.beginFill(0x69CCBE, 1)
     } else if (this.game.tears > 30 && this.game.tears <= 70) {
