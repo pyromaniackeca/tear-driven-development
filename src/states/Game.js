@@ -10,8 +10,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    this.unansweredQuestions = questions
-    this.answeredQuestions = []
+    this.questions = questions
 
     this.background = new StaticSprite({
       game: this.game,
@@ -101,7 +100,8 @@ export default class extends Phaser.State {
   //custom
 
   chooseQuestion () {
-    this.game.question = this.unansweredQuestions[0]
+    let index = Math.floor(Math.random() * (this.questions.lenght - this.game.questionCounter))
+    this.game.question = this.questions.splice(index, 1)[0]
 
     this.tearText.text = "Tears\n" + this.game.tears + "%"
     this.chaosText.text = "Chaos\n" + this.game.chaos + "%"
@@ -109,8 +109,8 @@ export default class extends Phaser.State {
     this.answer1Text.text = this.game.question.answer1.text
     this.answer2Text.text = this.game.question.answer2.text
 
-    this.questionText.text = ""
-    addCharByChar(this.questionText, this.game.question.text, 0.05)
+    this.questionText.text = this.game.question.text //""
+    // addCharByChar(this.questionText, this.game.question.text, 0.05)
   }
 
   answer1 () {
@@ -155,7 +155,7 @@ export default class extends Phaser.State {
       this.game.state.start("Defeat")
     }
 
-    if (this.game.questionCounter == 3) {
+    if (this.game.questionCounter == 4) {
       this.game.state.start("Victory")
     }
 
