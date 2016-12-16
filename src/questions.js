@@ -56,7 +56,7 @@ export const questions = [
     }
   },
   {
-    text: "Your team is fighting about whether you should use\nRSpec or Minitest to test a microservice.",
+    text: "Your team is fighting over whether you should use\nRSpec or Minitest to test a microservice.",
     character: "char3",
     answer1: {
       text: "Do some research on which works better\nfor your use case.",
@@ -95,6 +95,62 @@ export const questions = [
       text: "BDD can stand for beer-driven\ndevelopment. Let\nthem work.",
       chaos: 20,
       tears: 20
+    }
+  },
+  {
+    text: "The client is requesting new features, and you\nhaven't even managed to develop the planned ones.",
+    character: "char3",
+    answer1: {
+      text: "The client is always right.\nDo all the features!",
+      chaos: 20,
+      tears: 20
+    },
+    answer2: {
+      text: "Sit down with the client and try to talk\nsome sense into them.",
+      chaos: -20,
+      tears: 10
+    }
+  },
+  {
+    text: "GitHub is down.",
+    character: "char2",
+    answer1: {
+      text: "Admire the illustration on the 404 page,\nand then have a beer.",
+      chaos: 10,
+      tears: -20
+    },
+    answer2: {
+      text: "Work on your local branch.",
+      chaos: -10,
+      tears: 10
+    }
+  },
+  {
+    text: "One of your senior developers decides to quit IT\nand start an alpaca farm.",
+    character: "char1",
+    answer1: {
+      text: "Spend some time on recruiting a new\nsenior developer.",
+      chaos: -20,
+      tears: 10
+    },
+    answer2: {
+      text: "Hire two of your friends who know how\nto code and have no interest in alpacas.",
+      chaos: 20,
+      tears: -10
+    }
+  },
+  {
+    text: "Your tests are failing, but the\napplication seems to work just fine.",
+    character: "char3",
+    answer1: {
+      text: "Get cracking at making the tests pass.",
+      chaos: -20,
+      tears: 10
+    },
+    answer2: {
+      text: "Look! It's snowing outside!",
+      chaos: 20,
+      tears: -10
     }
   }
 ]
