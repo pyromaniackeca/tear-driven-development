@@ -18,7 +18,7 @@ export const addCharByChar = (text, txt, time) => {
   for (i = 0; i < txtLen; i++) {  // loop through each character of the custom text
     game.time.events.add(Phaser.Timer.SECOND * totalTime, function() {
         text.text += this.txt[this.i];  // add the next character
-        if (this.txt[this.i] != "\n" || this.txt[this.i] != " ") {
+        if (this.txt[this.i] != "\n" && this.txt[this.i] != " ") {
           window.game.sound.play("type", 0.05)
         }
     }, { text: text, txt: txt, i: i });  // for scoping purposes

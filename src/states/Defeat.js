@@ -9,7 +9,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    let defeatString = "Both your sanity and your app have fallen apart.\nSome people will tell you that you need to fail\nand fail again in order to succeed. Suck it up\nbuttercup and try again. Better luck next time."
+    let defeatString = "Both your sanity and your app have fallen apart.\nSome people will tell you that you need to fail\nand fail again in order to succeed.\n\nSuck it up buttercup and try again. Better luck\nnext time."
 
     this.background = new StaticSprite({
       game: this.game,

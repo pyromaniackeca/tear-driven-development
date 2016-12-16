@@ -9,7 +9,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
-    let victoryString = "Congratulations, you've made it! You've kept both\nyour sanity and application from falling apart.\nThe journey has been long and rough, but you've\nstayed on the right path. TDD is strong with you."
+    let victoryString = "Congratulations, you've made it!\nYou've kept both your sanity and application from\nfalling apart.\nThe journey has been long and rough, but you've\nstayed on the right path.\n\nThe TDD is strong with you."
 
     this.background = new StaticSprite({
       game: this.game,
